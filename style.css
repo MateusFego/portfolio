@@ -1,0 +1,353 @@
+/* Definições de Cores e Fontes (Variáveis CSS) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap'); 
+
+:root {
+    --primary-color: #00bcd4; /* Cor principal (ciano/verde-água) */
+    --secondary-color: #f7f7f7; /* Cor de destaque para texto */
+    --dark-bg: #1a1a1a; /* Fundo escuro principal */
+    --darker-bg: #111111; /* Fundo mais escuro para seções */
+}
+
+/* Reset básico e Configurações Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: var(--dark-bg);
+    color: var(--secondary-color);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* === 1. BARRA DE NAVEGAÇÃO === */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+    background-color: rgba(0, 0, 0, 0.7); 
+    position: fixed; 
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.navbar .logo {
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--primary-color);
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.navbar .nav-links li a {
+    color: var(--secondary-color);
+    padding: 10px 18px;
+    font-weight: 700;
+}
+
+.navbar .nav-links li a:hover {
+    color: var(--primary-color);
+}
+
+.cv-btn {
+    background-color: var(--primary-color);
+    color: var(--dark-bg); 
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+}
+
+.cv-btn:hover {
+    background-color: #00a0b2; 
+}
+
+/* === 2. SEÇÃO INTRODUTÓRIA (HERO) === */
+.hero-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    padding: 0 80px; 
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.greeting {
+    font-size: 1.2em;
+    color: var(--light-gray);
+    margin-bottom: 5px;
+}
+
+.hero-content h1 {
+    font-size: 4.5em;
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+.hero-content h1 strong {
+    color: var(--primary-color);
+}
+
+.role {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    color: var(--secondary-color);
+}
+
+.role strong {
+    color: var(--primary-color);
+}
+
+/* Ícones Sociais */
+.social-icons {
+    margin-bottom: 40px;
+}
+
+.social-icons a i {
+    color: var(--secondary-color);
+    font-size: 2.2em;
+    margin-right: 20px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a i:hover {
+    color: var(--primary-color);
+}
+
+.download-cv-btn {
+    /* Estilo igual ao cv-btn da navbar */
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--dark-bg);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Imagem de Perfil com Efeito */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 50px;
+}
+
+.hero-image img {
+    width: 300px; 
+    height: 300px;
+    border-radius: 50%;
+    object-fit: cover;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* O fundo estilizado (como na imagem) */
+.hero-image::before {
+    content: '';
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background-color: var(--primary-color);
+    border-radius: 50% 50% 50% 0; /* Forma ligeiramente irregular */
+    z-index: 1; 
+    animation: pulse 5s infinite; /* Adiciona uma animação sutil */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* === 3. SEÇÃO PROJETOS === */
+.projects-section {
+    padding: 80px 80px;
+    background-color: var(--darker-bg);
+    text-align: center;
+}
+
+.projects-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.project-item {
+    background-color: var(--dark-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border-bottom: 5px solid var(--dark-bg); /* Placeholder */
+    transition: all 0.3s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+/* Destaque para projetos de Cibersegurança */
+.project-item.security {
+    border-bottom-color: var(--primary-color);
+}
+
+/* Destaque para projetos de Desenvolvimento */
+.project-item.development {
+    border-bottom-color: #ff9800; /* Laranja para Dev */
+}
+
+.project-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.project-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.project-item p {
+    color: var(--light-gray);
+    margin-bottom: 15px;
+}
+/* --- 4. SEÇÃO SOBRE MIM --- */
+.about-section {
+    padding: 80px 80px;
+    background-color: var(--darker-bg);
+    text-align: center;
+}
+
+.about-section h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+}
+
+.about-content blockquote {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    border-left: 5px solid var(--primary-color);
+    background-color: var(--dark-bg);
+    text-align: left;
+    font-size: 1.1em;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+}
+
+.about-content blockquote p {
+    margin-bottom: 15px;
+}
+
+/* --- 5. SEÇÃO HABILIDADES --- */
+.skills-section {
+    padding: 80px 80px;
+    text-align: center;
+    background-color: var(--dark-bg);
+}
+
+.skills-section h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+}
+
+.skills-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.skills-group {
+    background-color: var(--darker-bg);
+    padding: 30px;
+    border-radius: 10px;
+    width: 350px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    text-align: left;
+}
+
+.skills-group h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+}
+
+.skills-group ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skills-group ul li {
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+}
+
+/* --- 6. SEÇÃO CONTATO --- */
+.contact-section {
+    padding: 80px 80px;
+    background-color: var(--darker-bg);
+    text-align: center;
+}
+
+.contact-section h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.contact-section p {
+    font-size: 1.1em;
+    margin-bottom: 40px;
+}
+
+.contact-info {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.contact-info p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+    margin-right: 15px;
+}

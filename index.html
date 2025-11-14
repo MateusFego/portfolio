@@ -1,12 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Meu Portfólio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mateus Fernandes - Portfolio TI/Cybersecurity</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <h1>Bem-vindo ao meu portfólio</h1>
-  <img src="imagens/site1.png" alt="Exemplo de site WordPress">
-  <img src="imagens/site2.png" alt="Outra imagem do portfólio">
+    
+    <header>
+        <nav class="navbar">
+            <div class="logo">MATEUS T.I. </div>
+            <ul class="nav-links">
+                <li><a href="#home">HOME</a></li>
+                <li><a href="#about">SOBRE MIM</a></li>
+                <li><a href="#projects">PROJETOS</a></li>
+                <li><a href="#skills">HABILIDADES</a></li>
+                <li><a href="#contact">CONTATO</a></li>
+            </ul>
+            <a href="./curriculo/Curriculo_Mateus_Fernandes_Goncalves-novo.pdf" target="_blank" class="cv-btn">DOWNLOAD CV</a> 
+        </nav>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <p class="greeting">Olá, meu nome é</p>
+            <h1>Mateus Fernandes Goncalves</h1>
+            <p class="role">Eu sou um Estudante de Analise e Desenvolvimento de Sistemas e Estudante de Cibersegurança</p> 
+            
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/mateus-fernandes-gon%C3%A7alves-12a428366/"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/MateusFego"><i class="fab fa-github"></i></a>
+                <a href="https://www.instagram.com/https_fego/"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <a href="LINK_CV_PDF" target="_blank" class="download-cv-btn">DOWNLOAD CV</a>
+        </div>
+        
+        <div class="hero-image">
+            <img src="./imagens/WhatsApp_Image_2025-11-14_at_19.13.51-removebg-preview.png" alt="Sua Foto de Perfil">
+        </div>
+    </section>
+
+    
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>Sobre Mim</h2>
+            <div class="about-content">
+                <blockquote>
+                    <p>Profissional em transição de carreira, altamente motivado e com grande <strong>interesse</strong> na área de <strong>Tecnologia da Informação</strong>.</p>
+                    <p>Sou estudante de <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong> e dediquei meus estudos à obtenção da certificação <strong>Google Cybersecurity</strong>, demonstrando meu foco e paixão pela segurança de sistemas. Minha experiência anterior me forneceu <strong>disciplina, proatividade e capacidade de aprendizado acelerado</strong>.</p>
+                    <p>Busco minha primeira oportunidade em TI para aplicar minha paixão por sistemas e solução de problemas, pronto para dar o <strong>melhor desempenho</strong> e evoluir em qualquer função técnica.</p>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+        <h2>Meus Projetos Recentes</h2>
+        <div class="project-grid">
+
+            <div class="project-item security">
+                <img src="imagens/WhatsApp Image 2025-11-14 at 19.26.44.jpeg" alt="Projeto de Financa pessoal">
+                <h3>Site localhost para controle de financas pessoais </h3>
+                <p>Realizado com auxilio da IA, com planos de melhorar mais ainda.</p>
+            </div>
+
+            <div class="project-item wordpress">
+                <img src="imagens/site2.png" alt="Site WordPress 1">
+                <h3>Site Aumigos - Projeto da faculdade (WordPress)</h3>
+                <p>Trata - se da representacao de um site de um canil municipal com algumas coisas a mais </p>
+            </div>
+            
+            <div class="project-item wordpress">
+                <img src="imagens/site1.png" alt="Site WordPress 1">
+                <h3>Site ProndCeVai - Projeto da faculdade e pessoal (WordPress)</h3>
+                <p>Criação de site completo para cliente, demonstrando atenção aos detalhes e organização.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section">
+        <h2>Habilidades</h2>
+        <div class="skills-container">
+
+            <div class="skills-group">
+                <h3>💻 Hard Skills (Técnicas)</h3>
+                <ul>
+                    <li><strong>Cibersegurança:</strong> Conceitos de SIEM/SOAR, IDS/IPS (Teoria), Análise de Logs.</li>
+                    <li><strong>Desenvolvimento:</strong> Lógica de Programação, Python (Em estudo), Java (Básico), MySQL.</li>
+                    <li><strong>Redes:</strong> Arquitetura de Redes, Modelo OSI/TCP-IP, Protocolos Básicos.</li>
+                    <li><strong>Ferramentas:</strong> Git/GitHub (Básico), Microsoft Excel, AutoCAD (Operacional).</li>
+                </ul>
+            </div>
+
+            <div class="skills-group">
+                <h3>✨ Soft Skills (Comportamentais)</h3>
+                <ul>
+                    <li>Proatividade e Autonomia</li>
+                    <li>Atenção aos Detalhes e Precisão</li>
+                    <li>Capacidade de Aprendizado Acelerado</li>
+                    <li>Resolução de Problemas</li>
+                    <li>Disciplina e Organização</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Entre em Contato</h2>
+        <p>Tenho interesse em oportunidades de estágio ou nível júnior na área de TI/Cibersegurança. Conecte-se comigo!</p>
+        
+        <div class="contact-info">
+            <p><i class="fas fa-envelope"></i> Email: mateusfego@gmail.com</p>
+            <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/mateus-fernandes-gon%C3%A7alves-12a428366/" target="_blank">/mateus-fernandes-gonçalves</a></p>
+            <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/MateusFego" target="_blank">/MateusFego</a></p>
+            <p><i class="fas fa-phone"></i> Telefone: (34) 98837-5189</p>
+        </div>
+    </section>
+    
 </body>
 </html>
