@@ -4,9 +4,36 @@
 :root {
     --primary-color: #00bcd4; /* Cor principal (ciano/verde-água) */
     --secondary-color: #f7f7f7; /* Cor de destaque para texto */
-    --dark-bg: #1a1a1a; /* Fundo escuro principal */
-    --darker-bg: #111111; /* Fundo mais escuro para seções */
+    --dark-bg: #1a1a1a; 
+    --darker-bg: #0d0d0d; /* Fundo ainda mais escuro para seções */
+    --light-gray: #ccc;
+    --terminal-grid-color: rgba(0, 188, 212, 0.05); /* Cor muito sutil para o grid */
+    --terminal-glow-color: rgba(0, 188, 212, 0.15); /* Brilho sutil do terminal */
 }
+
+/* --- ANIMAÇÕES --- */
+@keyframes pageLoad {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+@keyframes blink {
+    from, to { border-color: transparent }
+    50% { border-color: var(--primary-color); }
+}
+
+/* Nova animação para o fundo da seção Home (grid terminal) */
+@keyframes gridShift {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 50px 50px, 20px 20px; } /* Deslocamento suave do grid */
+}
+
 
 /* Reset básico e Configurações Globais */
 * {
@@ -16,12 +43,26 @@
     font-family: 'Roboto', sans-serif;
 }
 
+/* Ativa o Smooth Scrolling para a navegação por menu */
+html {
+    scroll-behavior: smooth; 
+}
+
 body {
-    background-color: var(--dark-bg);
+    background-color: #000000; /* Fundo puro e intenso */
     color: var(--secondary-color);
     line-height: 1.6;
-    scroll-behavior: smooth;
+    
+    /* Aplica apenas o fade-in na abertura */
+    opacity: 0;
+    animation: pageLoad 1.5s ease-out forwards; 
 }
+
+/* Estilo para Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #111; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
 
 a {
     color: var(--primary-color);
@@ -35,18 +76,19 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 20px 80px;
-    background-color: rgba(0, 0, 0, 0.7); 
+    background-color: rgba(0, 0, 0, 0.95); /* Quase preto absoluto */
     position: fixed; 
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.2); /* Sombra mais neon */
 }
 
 .navbar .logo {
     font-weight: 900;
     font-size: 28px;
     color: var(--primary-color);
+    text-shadow: 0 0 8px var(--primary-color), 0 0 15px rgba(0, 188, 212, 0.8); /* Neon bem forte */
 }
 
 .navbar .nav-links {
@@ -62,9 +104,10 @@ a {
 
 .navbar .nav-links li a:hover {
     color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color); /* Pequeno glow no hover do link */
 }
 
-.cv-btn {
+.cv-btn, .download-cv-btn {
     background-color: var(--primary-color);
     color: var(--dark-bg); 
     border: none;
@@ -72,11 +115,12 @@ a {
     border-radius: 5px;
     cursor: pointer;
     font-weight: 700;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; 
 }
 
-.cv-btn:hover {
+.cv-btn:hover, .download-cv-btn:hover {
     background-color: #00a0b2; 
+    box-shadow: 0 0 20px rgba(0, 188, 212, 1); /* Aumenta o glow no hover */
 }
 
 /* === 2. SEÇÃO INTRODUTÓRIA (HERO) === */
@@ -86,11 +130,34 @@ a {
     align-items: center;
     height: 100vh; 
     padding: 0 80px; 
+    position: relative; /* Necessário para o fundo animado */
+    overflow: hidden; /* Garante que o grid não vaze */
+
+    /* --- FUNDO HACKING/TERMINAL --- */
+    background-image: 
+        linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), /* Sobreposição escura para ler o texto */
+        repeating-linear-gradient(0deg, var(--terminal-grid-color) 0, var(--terminal-grid-color) 1px, transparent 1px, transparent 50px),
+        repeating-linear-gradient(90deg, var(--terminal-grid-color) 0, var(--terminal-grid-color) 1px, transparent 1px, transparent 50px);
+    background-size: 100% 100%, 50px 50px, 50px 50px; /* Tamanho do gradiente principal, e dos grids */
+    background-position: 0 0, 0 0, 0 0; /* Posição inicial */
+    animation: gridShift 40s linear infinite; /* Anima o grid */
+
+    /* Brilho sutil do terminal */
+    box-shadow: inset 0 0 100px var(--terminal-glow-color); 
 }
 
 .hero-content {
     flex: 1;
     max-width: 600px;
+    position: relative; /* Para garantir que o conteúdo fique acima do fundo */
+    z-index: 2; /* Garante que o texto esteja sobre o fundo */
+    /* Efeito de pulsação suave no texto */
+    animation: contentGlow 8s infinite alternate;
+}
+
+@keyframes contentGlow {
+    0% { text-shadow: none; }
+    100% { text-shadow: 0 0 15px rgba(0, 188, 212, 0.3); } /* Faz o texto pulsar */
 }
 
 .greeting {
@@ -103,6 +170,7 @@ a {
     font-size: 4.5em;
     margin-bottom: 10px;
     line-height: 1.1;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para o texto principal */
 }
 
 .hero-content h1 strong {
@@ -115,8 +183,13 @@ a {
     color: var(--secondary-color);
 }
 
-.role strong {
-    color: var(--primary-color);
+/* Efeito Terminal de Digitação (CURSOR) */
+#dynamic-text {
+    border-right: 3px solid var(--primary-color); 
+    animation: blink 0.75s step-end infinite;
+    padding-right: 8px; 
+    color: var(--primary-color); 
+    font-weight: 700;
 }
 
 /* Ícones Sociais */
@@ -128,23 +201,12 @@ a {
     color: var(--secondary-color);
     font-size: 2.2em;
     margin-right: 20px;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .social-icons a i:hover {
     color: var(--primary-color);
-}
-
-.download-cv-btn {
-    /* Estilo igual ao cv-btn da navbar */
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: var(--dark-bg);
-    border: none;
-    padding: 15px 30px;
-    border-radius: 5px;
-    font-weight: 700;
-    text-transform: uppercase;
+    text-shadow: 0 0 8px var(--primary-color), 0 0 15px var(--primary-color); /* Neon mais forte no hover */
 }
 
 /* Imagem de Perfil com Efeito */
@@ -163,31 +225,59 @@ a {
     border-radius: 50%;
     object-fit: cover;
     z-index: 2;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 40px rgba(0, 188, 212, 0.7); /* Glow mais intenso na foto */
 }
 
-/* O fundo estilizado (como na imagem) */
+/* O fundo estilizado (Glow atrás da foto) */
 .hero-image::before {
     content: '';
     position: absolute;
     width: 350px;
     height: 350px;
     background-color: var(--primary-color);
-    border-radius: 50% 50% 50% 0; /* Forma ligeiramente irregular */
+    border-radius: 50% 50% 50% 0;
+    filter: blur(40px); /* Suaviza o glow ainda mais */
+    opacity: 0.6;
     z-index: 1; 
-    animation: pulse 5s infinite; /* Adiciona uma animação sutil */
+    animation: pulse 5s infinite;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 0.8; }
-    50% { transform: scale(1.05); opacity: 1; }
-    100% { transform: scale(1); opacity: 0.8; }
-}
-
-/* === 3. SEÇÃO PROJETOS === */
-.projects-section {
+/* === 3. SEÇÃO SOBRE MIM === */
+.about-section {
     padding: 80px 80px;
     background-color: var(--darker-bg);
+    text-align: center;
+}
+
+.about-section h2 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+}
+
+.about-content blockquote {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    /* --- CORREÇÃO AQUI: REMOVIDO FUNDO E SUAVIZADA A BORDA --- */
+    border-left: 3px solid var(--primary-color); /* Borda mais fina e visível */
+    background-color: transparent; 
+    text-align: left;
+    font-size: 1.1em;
+    box-shadow: none; 
+    border-radius: 0;
+    color: var(--secondary-color); /* Garante a cor do texto */
+    text-shadow: 0 0 5px rgba(0, 188, 212, 0.1); /* Um leve brilho no texto */
+}
+
+.about-content blockquote p {
+    margin-bottom: 15px;
+}
+
+/* === 4. SEÇÃO PROJETOS === */
+.projects-section {
+    padding: 80px 80px;
+    background-color: var(--dark-bg);
     text-align: center;
 }
 
@@ -204,27 +294,40 @@ a {
 }
 
 .project-item {
-    background-color: var(--dark-bg);
+    background-color: var(--darker-bg);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    border-bottom: 5px solid var(--dark-bg); /* Placeholder */
+    /* Sombras base para todos os projetos */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); 
+    border-bottom: 3px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
     transition: all 0.3s ease;
 }
 
 .project-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+    transform: translateY(-8px); /* Levanta um pouco mais no hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); /* Sombra mais profunda */
 }
 
 /* Destaque para projetos de Cibersegurança */
 .project-item.security {
-    border-bottom-color: var(--primary-color);
+    border-bottom-color: var(--primary-color); /* Mão a borda ciano */
+    /* --- CORREÇÃO AQUI: Brilho sutil inicial para não parecer um "círculo" --- */
+    box-shadow: 0 0 10px rgba(0, 188, 212, 0.5), 0 4px 15px rgba(0, 0, 0, 0.6); 
 }
 
-/* Destaque para projetos de Desenvolvimento */
+.project-item.security:hover {
+    transform: translateY(-8px);
+    /* Aumenta o brilho no hover, mantendo a sombra */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 35px var(--primary-color); 
+}
+
+/* Destaque para projetos de Desenvolvimento (se tiver) */
 .project-item.development {
-    border-bottom-color: #ff9800; /* Laranja para Dev */
+    border-bottom-color: #ff9800; /* Laranja para desenvolvimento */
+}
+
+.project-item.wordpress {
+    border-bottom-color: #0073AA; /* Cor do WordPress */
 }
 
 .project-item img {
@@ -243,40 +346,12 @@ a {
     color: var(--light-gray);
     margin-bottom: 15px;
 }
-/* --- 4. SEÇÃO SOBRE MIM --- */
-.about-section {
-    padding: 80px 80px;
-    background-color: var(--darker-bg);
-    text-align: center;
-}
 
-.about-section h2 {
-    font-size: 2.5em;
-    color: var(--primary-color);
-    margin-bottom: 40px;
-}
-
-.about-content blockquote {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 30px;
-    border-left: 5px solid var(--primary-color);
-    background-color: var(--dark-bg);
-    text-align: left;
-    font-size: 1.1em;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    border-radius: 5px;
-}
-
-.about-content blockquote p {
-    margin-bottom: 15px;
-}
-
-/* --- 5. SEÇÃO HABILIDADES --- */
+/* === 5. SEÇÃO HABILIDADES, 6. SEÇÃO CONTATO === */
 .skills-section {
     padding: 80px 80px;
     text-align: center;
-    background-color: var(--dark-bg);
+    background-color: var(--darker-bg);
 }
 
 .skills-section h2 {
@@ -293,7 +368,7 @@ a {
 }
 
 .skills-group {
-    background-color: var(--darker-bg);
+    background-color: var(--dark-bg);
     padding: 30px;
     border-radius: 10px;
     width: 350px;
@@ -318,10 +393,9 @@ a {
     color: var(--secondary-color);
 }
 
-/* --- 6. SEÇÃO CONTATO --- */
 .contact-section {
     padding: 80px 80px;
-    background-color: var(--darker-bg);
+    background-color: var(--dark-bg);
     text-align: center;
 }
 
