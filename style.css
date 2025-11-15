@@ -326,7 +326,6 @@ a:hover {
     text-align: center;
     position: relative;
     overflow: hidden;
-    /* Fundo com linhas sutis */
     background-image: repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 50px);
     background-size: 100px 100%;
     animation: verticalLines 60s linear infinite; 
@@ -433,14 +432,18 @@ a:hover {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 1), 0 0 50px #0073AA;
 }
 
+/* CORREÇÃO PARA A IMAGEM DE PROJETO (Manter imagem inteira) */
 .project-item img {
     width: 100%;
-    height: 200px; 
-    object-fit: cover; 
+    max-height: 250px; /* Adiciona altura máxima */
+    object-fit: contain; /* Garante que a imagem seja exibida por completo */
     border-radius: 8px;
     margin-bottom: 20px; 
     border: 1px solid rgba(0, 188, 212, 0.2); 
+    background-color: rgba(0, 0, 0, 0.3); /* Fundo para preencher o espaço vazio */
+    padding: 10px; /* Pequeno padding para o fundo ficar visível */
 }
+
 
 .project-item h3 {
     color: var(--primary-color);
@@ -586,7 +589,7 @@ a:hover {
 }
 
 /* ======================================= */
-/* === PONTO CRÍTICO: MEDIA QUERIES (Responsividade) === */
+/* === MEDIA QUERIES (Responsividade) === */
 /* ======================================= */
 
 @media screen and (max-width: 1024px) {
@@ -629,7 +632,7 @@ a:hover {
     }
 
     /* Outras seções */
-    .about-section, .projects-section, .skills-section, .contact-section {
+    .about-section, .projects-section, .skills-section, .contact-section, .tech-stack-section {
         padding: 80px 40px;
     }
 
