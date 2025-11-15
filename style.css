@@ -3,12 +3,14 @@
 
 :root {
     --primary-color: #00bcd4; /* Cor principal (ciano/verde-água) */
-    --secondary-color: #f7f7f7; /* Cor de destaque para texto */
-    --dark-bg: #1a1a1a; 
-    --darker-bg: #0d0d0d; 
-    --light-gray: #ccc;
-    --terminal-grid-color: rgba(0, 188, 212, 0.05); 
-    --terminal-glow-color: rgba(0, 188, 212, 0.15); 
+    --secondary-color: #e0e0e0; /* Cor de destaque para texto (um pouco mais clara) */
+    --dark-bg: #111111; /* Fundo base escuro */
+    --darker-bg: #080808; /* Fundo mais escuro para seções alternadas */
+    --light-gray: #b0b0b0; /* Cinza claro para textos secundários */
+    --terminal-grid-color: rgba(0, 188, 212, 0.03); /* Grid muito sutil */
+    --terminal-glow-color: rgba(0, 188, 212, 0.1); /* Brilho sutil do terminal */
+    --matrix-code-color: rgba(0, 188, 212, 0.02); /* Cor do código Matrix */
+    --section-border-glow: rgba(0, 188, 212, 0.2); /* Borda sutil entre seções */
 }
 
 /* --- ANIMAÇÕES --- */
@@ -34,6 +36,17 @@
     100% { background-position: 50px 50px, 20px 20px; } 
 }
 
+/* Animação para o efeito de código Matrix */
+@keyframes matrixFlow {
+    from { background-position: 0 0; }
+    to { background-position: 0 100%; } 
+}
+
+/* Animação para o fundo das outras seções (linhas verticais sutis) */
+@keyframes verticalLines {
+    0% { background-position: 0% 0; }
+    100% { background-position: 100% 0; }
+}
 
 /* Reset básico e Configurações Globais */
 * {
@@ -59,14 +72,18 @@ body {
 
 /* Estilo para Scrollbar */
 ::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: #111; }
-::-webkit-scrollbar-thumb { background: #333; border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover { background: var(--primary-color); }
+::-webkit-scrollbar-track { background: var(--darker-bg); }
+::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #00a0b2; }
 
 a {
     color: var(--primary-color);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    text-shadow: 0 0 8px var(--primary-color);
 }
 
 /* === 1. BARRA DE NAVEGAÇÃO === */
@@ -75,19 +92,20 @@ a {
     justify-content: space-between;
     align-items: center;
     padding: 20px 80px;
-    background-color: rgba(0, 0, 0, 0.95); 
+    background-color: rgba(0, 0, 0, 0.98); 
     position: fixed; 
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 0 20px rgba(0, 188, 212, 0.2); 
+    box-shadow: 0 0 25px rgba(0, 188, 212, 0.3); 
+    border-bottom: 1px solid rgba(0, 188, 212, 0.1); 
 }
 
 .navbar .logo {
     font-weight: 900;
     font-size: 28px;
     color: var(--primary-color);
-    text-shadow: 0 0 8px var(--primary-color), 0 0 15px rgba(0, 188, 212, 0.8);
+    text-shadow: 0 0 10px var(--primary-color), 0 0 20px rgba(0, 188, 212, 0.9); 
 }
 
 .navbar .nav-links {
@@ -103,7 +121,7 @@ a {
 
 .navbar .nav-links li a:hover {
     color: var(--primary-color);
-    text-shadow: 0 0 5px var(--primary-color);
+    text-shadow: 0 0 8px var(--primary-color);
 }
 
 .cv-btn, .download-cv-btn {
@@ -119,7 +137,7 @@ a {
 
 .cv-btn:hover, .download-cv-btn:hover {
     background-color: #00a0b2; 
-    box-shadow: 0 0 20px rgba(0, 188, 212, 1); 
+    box-shadow: 0 0 25px rgba(0, 188, 212, 1.2); 
 }
 
 /* === 2. SEÇÃO INTRODUTÓRIA (HERO) === */
@@ -131,18 +149,20 @@ a {
     padding: 0 80px; 
     position: relative; 
     overflow: hidden; 
-
+    
     /* --- FUNDO HACKING/TERMINAL --- */
+    background-color: #000000;
     background-image: 
-        linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
-        repeating-linear-gradient(0deg, var(--terminal-grid-color) 0, var(--terminal-grid-color) 1px, transparent 1px, transparent 50px),
-        repeating-linear-gradient(90deg, var(--terminal-grid-color) 0, var(--terminal-grid-color) 1px, transparent 1px, transparent 50px);
-    background-size: 100% 100%, 50px 50px, 50px 50px; 
-    background-position: 0 0, 0 0, 0 0; 
-    animation: gridShift 40s linear infinite; 
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><text x="0" y="15" font-size="15" fill="rgba(0, 188, 212, 0.02)">01</text></svg>'),
+        repeating-linear-gradient(0deg, var(--terminal-grid-color) 0, var(--terminal-grid-color) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(90deg, var(--terminal-grid-color) 0, var(--terminal-grid-color) 1px, transparent 1px, transparent 40px);
+    
+    background-size: 20px 40px, 40px 40px, 40px 40px; 
+    background-position: 0 0; 
+    animation: matrixFlow 30s linear infinite, gridShift 40s linear infinite; 
 
-    border-bottom: 1px solid rgba(0, 188, 212, 0.2); 
-    box-shadow: inset 0 0 100px var(--terminal-glow-color); 
+    border-bottom: 2px solid var(--section-border-glow); 
+    box-shadow: inset 0 0 120px var(--terminal-glow-color); 
 }
 
 .hero-content {
@@ -155,20 +175,20 @@ a {
 
 @keyframes contentGlow {
     0% { text-shadow: none; }
-    100% { text-shadow: 0 0 15px rgba(0, 188, 212, 0.3); } 
+    100% { text-shadow: 0 0 20px rgba(0, 188, 212, 0.4); } 
 }
 
 .greeting {
-    font-size: 1.2em;
+    font-size: 1.3em; 
     color: var(--light-gray);
     margin-bottom: 5px;
 }
 
 .hero-content h1 {
-    font-size: 4.5em;
+    font-size: 4.8em; 
     margin-bottom: 10px;
     line-height: 1.1;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.6); 
 }
 
 .hero-content h1 strong {
@@ -176,35 +196,36 @@ a {
 }
 
 .role {
-    font-size: 1.5em;
+    font-size: 1.6em; 
     margin-bottom: 30px;
     color: var(--secondary-color);
 }
 
 /* Efeito Terminal de Digitação (CURSOR) */
 #dynamic-text {
-    border-right: 3px solid var(--primary-color); 
+    border-right: 4px solid var(--primary-color); 
     animation: blink 0.75s step-end infinite;
-    padding-right: 8px; 
+    padding-right: 10px; 
     color: var(--primary-color); 
     font-weight: 700;
 }
 
 /* Ícones Sociais */
 .social-icons {
+    margin-top: 20px; 
     margin-bottom: 40px;
 }
 
 .social-icons a i {
     color: var(--secondary-color);
-    font-size: 2.2em;
-    margin-right: 20px;
+    font-size: 2.5em; 
+    margin-right: 25px;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .social-icons a i:hover {
     color: var(--primary-color);
-    text-shadow: 0 0 8px var(--primary-color), 0 0 15px var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color); 
 }
 
 /* Imagem de Perfil com Efeito */
@@ -218,163 +239,273 @@ a {
 }
 
 .hero-image img {
-    width: 300px; 
-    height: 300px;
+    width: 320px; 
+    height: 320px;
     border-radius: 50%;
     object-fit: cover;
     z-index: 2;
-    box-shadow: 0 0 40px rgba(0, 188, 212, 0.7); 
+    box-shadow: 0 0 50px rgba(0, 188, 212, 0.8); 
+    border: 3px solid var(--primary-color); 
 }
 
 /* O fundo estilizado (Glow atrás da foto) */
 .hero-image::before {
     content: '';
     position: absolute;
-    width: 350px;
-    height: 350px;
+    width: 380px; 
+    height: 380px;
     background-color: var(--primary-color);
     border-radius: 50% 50% 50% 0;
-    filter: blur(40px); 
-    opacity: 0.6;
+    filter: blur(50px); 
+    opacity: 0.7; 
     z-index: 1; 
     animation: pulse 5s infinite;
 }
 
+/* === NOVA SEÇÃO: TECNOLOGIAS EM FOCO (#tech-stack) === */
+.tech-stack-section {
+    padding: 60px 80px;
+    background-color: var(--dark-bg);
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 188, 212, 0.1);
+}
+
+.tech-stack-section h2 {
+    font-size: 2em;
+    color: var(--primary-color);
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
+}
+
+.tech-icons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.tech-item {
+    text-align: center;
+    width: 100px;
+    padding: 15px 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+}
+
+.tech-item i {
+    font-size: 3.5em; 
+    color: var(--primary-color);
+    text-shadow: 0 0 10px var(--primary-color); 
+    margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.tech-item p {
+    font-size: 0.9em;
+    color: var(--light-gray);
+    margin-top: 5px;
+}
+
+.tech-item:hover {
+    transform: scale(1.1); 
+    background-color: rgba(0, 188, 212, 0.05); 
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.4); 
+}
+
+.tech-item:hover i {
+    color: #fff; 
+    text-shadow: 0 0 20px var(--primary-color);
+}
+
+
 /* === 3. SEÇÃO SOBRE MIM === */
 .about-section {
-    padding: 80px 80px;
-    background-color: var(--darker-bg);
+    padding: 100px 80px; 
+    background-color: var(--darker-bg); 
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    /* Fundo com linhas sutis */
+    background-image: repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0, rgba(0,0,0,0.05) 1px, transparent 1px, transparent 50px);
+    background-size: 100px 100%;
+    animation: verticalLines 60s linear infinite; 
+    border-bottom: 2px solid var(--section-border-glow); 
+    box-shadow: inset 0 0 80px rgba(0, 188, 212, 0.08); 
 }
 
 .about-section h2 {
-    font-size: 2.5em;
+    font-size: 3em; 
     color: var(--primary-color);
-    margin-bottom: 40px;
+    margin-bottom: 50px; 
+    text-shadow: 0 0 15px rgba(0, 188, 212, 0.7); 
 }
 
 .about-content blockquote {
-    max-width: 800px;
+    max-width: 850px; 
     margin: 0 auto;
-    padding: 30px;
-    border-left: 3px solid var(--primary-color); 
-    background-color: transparent; 
+    padding: 40px; 
+    border-left: 4px solid var(--primary-color); 
+    background-color: rgba(0, 0, 0, 0.4); 
+    border-radius: 8px; 
     text-align: left;
-    font-size: 1.1em;
-    box-shadow: none; 
-    border-radius: 0;
+    font-size: 1.2em; 
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.3); 
     color: var(--secondary-color); 
-    text-shadow: 0 0 5px rgba(0, 188, 212, 0.1); 
+    text-shadow: 0 0 8px rgba(0, 188, 212, 0.15); 
 }
 
 .about-content blockquote p {
-    margin-bottom: 15px;
+    margin-bottom: 20px; 
 }
 
 /* === 4. SEÇÃO PROJETOS === */
 .projects-section {
-    padding: 80px 80px;
-    background-color: var(--dark-bg);
+    padding: 100px 80px; 
+    background-color: var(--dark-bg); 
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-image: 
+        repeating-linear-gradient(45deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 25px),
+        repeating-linear-gradient(-45deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 25px);
+    background-size: 50px 50px;
+    animation: gridShift 80s linear infinite reverse; 
+    border-bottom: 2px solid var(--section-border-glow);
+    box-shadow: inset 0 0 80px rgba(0, 188, 212, 0.08);
 }
 
 .projects-section h2 {
-    font-size: 2.5em;
+    font-size: 3em;
     color: var(--primary-color);
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    text-shadow: 0 0 15px rgba(0, 188, 212, 0.7);
 }
 
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 40px; 
 }
 
 .project-item {
-    background-color: var(--darker-bg);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); 
-    border-bottom: 3px solid rgba(255, 255, 255, 0.1); 
-    transition: all 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.6); 
+    padding: 30px; 
+    border-radius: 12px; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), inset 0 0 10px rgba(0, 188, 212, 0.1); 
+    border: 1px solid rgba(0, 188, 212, 0.3); 
+    transition: all 0.4s ease;
 }
 
 .project-item:hover {
-    transform: translateY(-8px); 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8); 
+    transform: translateY(-12px) scale(1.02); 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 1), 0 0 40px var(--primary-color); 
+    border-color: var(--primary-color); 
 }
 
 /* Destaque para projetos de Cibersegurança */
 .project-item.security {
     border-bottom-color: var(--primary-color); 
-    box-shadow: 0 0 10px rgba(0, 188, 212, 0.5), 0 4px 15px rgba(0, 0, 0, 0.6); 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 188, 212, 0.7); 
 }
 
 .project-item.security:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 35px var(--primary-color); 
+    border-color: var(--primary-color);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 1), 0 0 50px var(--primary-color); 
 }
 
 /* Destaque para projetos de Desenvolvimento (se tiver) */
 .project-item.development {
-    border-bottom-color: #ff9800; 
+    border-color: #ff9800; 
+}
+
+.project-item.development:hover {
+    border-color: #ff9800;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 1), 0 0 50px #ff9800;
 }
 
 .project-item.wordpress {
-    border-bottom-color: #0073AA; 
+    border-color: #0073AA; 
+}
+
+.project-item.wordpress:hover {
+    border-color: #0073AA;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 1), 0 0 50px #0073AA;
 }
 
 .project-item img {
     width: 100%;
-    height: auto;
+    height: 200px; 
+    object-fit: cover; 
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 20px; 
+    border: 1px solid rgba(0, 188, 212, 0.2); 
 }
 
 .project-item h3 {
     color: var(--primary-color);
-    margin-bottom: 10px;
+    margin-bottom: 15px; 
+    font-size: 1.5em;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.5);
 }
 
 .project-item p {
     color: var(--light-gray);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-/* === 5. SEÇÃO HABILIDADES, 6. SEÇÃO CONTATO (Geral) === */
+/* === 5. SEÇÃO HABILIDADES === */
 .skills-section {
-    padding: 80px 80px;
+    padding: 100px 80px;
     text-align: center;
-    background-color: var(--darker-bg);
+    background-color: var(--darker-bg); 
+    position: relative;
+    overflow: hidden;
+    background-image: repeating-linear-gradient(60deg, rgba(0,0,0,0.04) 0, rgba(0,0,0,0.04) 1px, transparent 1px, transparent 30px);
+    background-size: 60px 60px;
+    animation: gridShift 70s linear infinite; 
+    border-bottom: 2px solid var(--section-border-glow);
+    box-shadow: inset 0 0 80px rgba(0, 188, 212, 0.08);
 }
 
 .skills-section h2 {
-    font-size: 2.5em;
+    font-size: 3em;
     color: var(--primary-color);
-    margin-bottom: 40px;
+    margin-bottom: 50px;
+    text-shadow: 0 0 15px rgba(0, 188, 212, 0.7);
 }
 
 .skills-container {
     display: flex;
     justify-content: center;
-    gap: 40px;
+    gap: 50px; 
     flex-wrap: wrap;
 }
 
 .skills-group {
-    background-color: var(--dark-bg);
-    padding: 30px;
-    border-radius: 10px;
-    width: 350px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 40px; 
+    border-radius: 12px;
+    width: 400px; 
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), inset 0 0 15px rgba(0, 188, 212, 0.2); 
+    border: 1px solid rgba(0, 188, 212, 0.4); 
     text-align: left;
+    transition: all 0.3s ease;
+}
+
+.skills-group:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9), 0 0 40px var(--primary-color); 
+    border-color: var(--primary-color);
 }
 
 .skills-group h3 {
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: 25px; 
     border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 5px;
+    padding-bottom: 8px;
+    font-size: 1.8em; 
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
 }
 
 .skills-group ul {
@@ -383,41 +514,75 @@ a {
 }
 
 .skills-group ul li {
-    margin-bottom: 10px;
+    margin-bottom: 12px; 
     color: var(--secondary-color);
+    font-size: 1.1em;
+    position: relative;
+    padding-left: 25px; 
 }
 
+.skills-group ul li::before {
+    content: '\2022'; 
+    color: var(--primary-color);
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.5em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-shadow: 0 0 5px var(--primary-color); 
+}
+
+/* === 6. SEÇÃO CONTATO === */
 .contact-section {
-    padding: 80px 80px;
+    padding: 100px 80px;
     background-color: var(--dark-bg);
     text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-image: repeating-linear-gradient(120deg, rgba(0,0,0,0.03) 0, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 40px);
+    background-size: 80px 80px;
+    animation: gridShift 90s linear infinite reverse;
+    box-shadow: inset 0 0 80px rgba(0, 188, 212, 0.08);
 }
 
 .contact-section h2 {
-    font-size: 2.5em;
+    font-size: 3em;
     color: var(--primary-color);
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    text-shadow: 0 0 15px rgba(0, 188, 212, 0.7);
 }
 
 .contact-section p {
-    font-size: 1.1em;
-    margin-bottom: 40px;
+    font-size: 1.2em;
+    margin-bottom: 50px;
+    color: var(--light-gray);
 }
 
 .contact-info {
-    max-width: 600px;
+    max-width: 650px; 
     margin: 0 auto;
     text-align: left;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(0, 188, 212, 0.4); 
+    border: 1px solid rgba(0, 188, 212, 0.5);
 }
 
 .contact-info p {
-    font-size: 1.1em;
-    margin-bottom: 15px;
+    font-size: 1.3em; 
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+    text-shadow: 0 0 5px rgba(0, 188, 212, 0.1);
 }
 
 .contact-info i {
     color: var(--primary-color);
-    margin-right: 15px;
+    margin-right: 20px; 
+    font-size: 1.5em;
+    text-shadow: 0 0 10px var(--primary-color); 
 }
 
 /* ======================================= */
@@ -425,17 +590,17 @@ a {
 /* ======================================= */
 
 @media screen and (max-width: 1024px) {
-    /* Ajustes para Tablets e Telas Menores */
     .navbar {
         padding: 20px 40px;
     }
     
     .hero-section {
-        flex-direction: column; /* Coloca a foto abaixo do texto */
+        flex-direction: column; 
         text-align: center;
-        height: auto; /* Permite que a seção aumente para acomodar o conteúdo */
-        padding-top: 100px; /* Espaço para a navbar */
-        padding-bottom: 40px;
+        height: auto; 
+        padding-top: 100px; 
+        padding-bottom: 60px; 
+        background-size: 20px 40px, 30px 30px, 30px 30px; 
     }
 
     .hero-content {
@@ -448,61 +613,97 @@ a {
         font-size: 3.5em;
     }
     
+    .role {
+        font-size: 1.3em;
+    }
+
     .hero-image::before {
-        width: 320px;
-        height: 320px;
+        width: 300px;
+        height: 300px;
+        filter: blur(40px);
     }
 
     .hero-image img {
         width: 250px;
         height: 250px;
     }
+
+    /* Outras seções */
+    .about-section, .projects-section, .skills-section, .contact-section {
+        padding: 80px 40px;
+    }
+
+    .about-section h2, .projects-section h2, .skills-section h2, .contact-section h2 {
+        font-size: 2.5em;
+    }
+
+    .about-content blockquote {
+        padding: 30px;
+        font-size: 1.1em;
+    }
+
+    .project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .project-item img {
+        height: 180px;
+    }
+
+    .skills-container {
+        gap: 30px;
+    }
+
+    .skills-group {
+        width: 100%; 
+        max-width: 450px; 
+    }
 }
 
 @media screen and (max-width: 768px) {
-    /* Ajustes para Celulares */
     .navbar {
         padding: 15px 20px;
     }
     
     .navbar .nav-links {
-        display: none; /* Oculta os links de navegação para simplificar no mobile */
+        display: none; 
     }
     
     .navbar .cv-btn {
-        padding: 8px 15px;
-        font-size: 0.9em;
+        padding: 10px 18px;
+        font-size: 0.85em;
     }
 
-    /* Reduz o padding geral das seções */
-    .about-section, .projects-section, .skills-section, .contact-section {
-        padding: 40px 20px;
+    .about-section, .projects-section, .skills-section, .contact-section, .tech-stack-section {
+        padding: 50px 20px; 
     }
 
     .hero-content h1 {
-        font-size: 2.5em;
+        font-size: 2em; 
     }
     
     .role {
-        font-size: 1.2em;
+        font-size: 1em; 
     }
     
     .hero-image {
-        padding: 30px;
+        padding: 20px;
     }
 
     .hero-image img {
-        width: 200px;
-        height: 200px;
+        width: 180px;
+        height: 180px;
     }
 
     .hero-image::before {
-        width: 250px;
-        height: 250px;
+        width: 220px;
+        height: 220px;
+        filter: blur(30px);
     }
     
     .project-grid {
-        grid-template-columns: 1fr; /* Força uma coluna única */
+        grid-template-columns: 1fr; 
     }
 
     .skills-container {
@@ -512,10 +713,16 @@ a {
     }
 
     .skills-group {
-        width: 90%; /* Ocupa quase a largura toda */
+        width: 100%; 
+        padding: 30px;
     }
     
     .about-content blockquote {
         padding: 20px;
+        font-size: 1em;
+    }
+
+    .contact-info p {
+        font-size: 1.1em;
     }
 }
