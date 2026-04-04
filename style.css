@@ -173,15 +173,88 @@ h2 { font-size: 3.5rem; color: var(--primary-color); text-align: center; margin-
 .contact-info i { color: var(--primary-color); width: 50px; text-align: center; font-size: 1.6rem; margin-right: 10px; }
 .contact-info a:hover { color: var(--primary-color); text-shadow: 0 0 8px var(--primary-color); }
 
-/* RESPONSIVIDADE */
-@media (max-width: 1024px) {
-    .hero-container { flex-direction: column; text-align: center; }
-    .hero-content h1 { font-size: 3.5rem; }
-    .hero-image img { width: 300px; height: 300px; margin-top: 50px; }
-    .navbar { padding: 15px 30px; }
-    .nav-links { display: none; }
-    .contact-info a { width: 100%; justify-content: center;}
+/* --- SUPER AJUSTE DE RESPONSIVIDADE (MOBILE 100%) --- */
+
+@media (max-width: 768px) {
+    /* 1. Ajuste da Navegação */
+    .navbar {
+        padding: 15px 20px;
+    }
+    .logo { font-size: 1.2rem; }
+    .cv-btn { padding: 8px 15px; font-size: 0.8rem; }
+
+    /* 2. Hero Section (Home) */
+    .hero-section {
+        height: auto;
+        padding: 120px 0 60px;
+        text-align: center;
+    }
+    .hero-container {
+        flex-direction: column-reverse; /* Foto em cima ou texto em cima? Reverse coloca foto embaixo */
+        gap: 40px;
+    }
+    .hero-content h1 {
+        font-size: 2.8rem; /* Reduzi drasticamente para não cortar */
+        line-height: 1.1;
+    }
+    .role {
+        font-size: 1.4rem;
+        justify-content: center;
+        min-height: 3em; /* Mais espaço para frases que quebram linha */
+    }
+    .hero-image img {
+        width: 250px;
+        height: 250px;
+    }
+
+    /* 3. Seções e Títulos */
+    section { padding: 60px 0; }
+    h2 { font-size: 2.2rem; margin-bottom: 40px; }
+
+    /* 4. Homelab (O Show) */
+    .homelab-gallery {
+        grid-template-columns: 1fr; /* Uma imagem por linha no celular */
+    }
+    .gallery-item:first-child, .gallery-item:not(:first-child) {
+        height: 220px; /* Tamanho padrão para mobile */
+    }
+    .project-item.highlight { padding: 25px; }
+    .infra-list { grid-template-columns: 1fr; }
+    .homelab-footer {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* 5. Projetos e Habilidades */
+    .project-grid { grid-template-columns: 1fr; }
+    .skills-group { width: 100%; padding: 25px; }
+
+    /* 6. Certificações */
+    .cert-list li {
+        font-size: 1rem;
+        padding: 15px;
+    }
+
+    /* 7. Contato (Onde o LinkedIn estava fugindo) */
+    .contact-info a {
+        width: 100%;
+        max-width: 300px;
+        font-size: 1.1rem;
+        justify-content: center; /* Centraliza ícone + texto */
+    }
+    .opportunity-badge {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+        line-height: 1.4;
+    }
 }
+
+/* Ajuste para telas MUITO pequenas (iPhone SE / Antigos) */
+@media (max-width: 400px) {
+    .hero-content h1 { font-size: 2.2rem; }
+    .role { font-size: 1.2rem; }
+}
+
 /* GALERIA HOMELAB - IMPACTO VISUAL */
 .homelab-gallery {
     display: grid;
