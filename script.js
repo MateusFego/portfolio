@@ -1,46 +1,43 @@
-const dynamicText = document.getElementById('dynamic-text');
-const roles = [
-    "Estudante de Análise e Desenvolvimento de Sistemas",
-    "Futuro Analista de Cibersegurança",
-    "Entusiasta em Resolução de Problemas",
-    "Pronto para Codificar e Aprender"
+const textElement = document.getElementById('dynamic-text');
+const phrases = [
+    "sou um estudante de Cybersecurity",
+    "estou focado em Infraestrutura e Redes",
+    "estou construindo um Homelab 24/7",
+    "estou praticando Monitoramento e SIEM",
+    "estou evoluindo em Segurança Ofensiva e Defensiva"
 ];
 
-let roleIndex = 0;
-let charIndex = 0;
+let i = 0;
+let j = 0;
 let isDeleting = false;
 
 function type() {
-    const currentRole = roles[roleIndex];
+    const current = phrases[i];
     
     if (isDeleting) {
-        // Deletando texto (simulação de Backspace)
-        charIndex--;
-        dynamicText.textContent = currentRole.substring(0, charIndex);
+        // Apagando o texto
+        textElement.textContent = current.substring(0, j - 1);
+        j--;
     } else {
-        // Digitando texto
-        charIndex++;
-        dynamicText.textContent = currentRole.substring(0, charIndex);
+        // Escrevendo o texto
+        textElement.textContent = current.substring(0, j + 1);
+        j++;
     }
 
-    let typingSpeed = 100; // Velocidade de digitação
-    if (isDeleting) {
-        typingSpeed /= 2; // Deleta mais rápido
-    }
+    // Velocidade: Digita mais devagar (100ms) e apaga rápido (50ms)
+    let speed = isDeleting ? 50 : 100;
 
-    if (!isDeleting && charIndex === currentRole.length) {
-        // Terminou de digitar, espera (2 segundos) e começa a deletar
-        typingSpeed = 2000;
+    if (!isDeleting && j === current.length) {
+        speed = 2000; // Pausa de 2 segundos quando a frase está completa
         isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        // Terminou de deletar, muda para a próxima função e recomeça a digitar
+    } else if (isDeleting && j === 0) {
         isDeleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-        typingSpeed = 500;
+        i = (i + 1) % phrases.length; // Passa para a próxima frase
+        speed = 500; // Pequena pausa antes de começar a escrever a próxima
     }
 
-    setTimeout(type, typingSpeed);
+    setTimeout(type, speed);
 }
 
-// Inicia o efeito assim que a página carrega
+// Inicializa o efeito assim que o DOM estiver pronto
 document.addEventListener('DOMContentLoaded', type);

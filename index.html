@@ -3,238 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mateus Fernandes - Portfólio TI/Cibersegurança</title>
+    <title>Mateus Fernandes - Infraestrutura & Cybersecurity</title>
     <link rel="stylesheet" href="style.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-<body>
-    
-    <header>
-        <nav class="navbar">
-            <div class="logo">MATEUS T.I.</div>
-            <ul class="nav-links">
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#about">SOBRE MIM</a></li>
-                <li><a href="#projects">PROJETOS</a></li>
-                <li><a href="#skills">HABILIDADES</a></li>
-                <li><a href="#contact">CONTATO</a></li>
-            </ul>
-            <a href="./curriculo/Curriculo_Mateus_Fernandes_Goncalves-2026 atualizado.pdf" target="_blank" class="cv-btn">DOWNLOAD CV</a> 
-        </nav>
-    </header>
 
-    <section id="home" class="hero-section">
+<body>
+
+<header>
+    <nav class="navbar">
+        <div class="logo">MATEUS <span>| INFRA & CYBER</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">HOME</a></li>
+            <li><a href="#about">SOBRE</a></li>
+            <li><a href="#homelab">HOMELAB</a></li>
+            <li><a href="#projects">PROJETOS</a></li>
+            <li><a href="#skills">HABILIDADES</a></li>
+            <li><a href="#certifications">CERTIFICAÇÕES</a></li>
+            <li><a href="#contact">CONTATO</a></li>
+        </ul>
+        <a href="./curriculo/Curriculo_Mateus_Fernandes_Goncalves-2026 atualizado.pdf" target="_blank" class="cv-btn">DOWNLOAD CV</a> 
+    </nav>
+</header>
+
+<section id="home" class="hero-section">
+    <div class="container hero-container">
         <div class="hero-content">
             <p class="greeting">Olá, meu nome é</p>
             <h1>Mateus Fernandes Gonçalves</h1>
-            
-            <p class="role">Eu sou <span id="dynamic-text"></span></p> 
-            
+
+            <p class="role">Eu <span id="dynamic-text"></span></p>
+
+            <p class="hero-description">
+                Construindo um ambiente real de segurança e redes com Proxmox, Wazuh, pfSense e automações.
+            </p>
+
             <div class="social-icons">
                 <a href="https://www.linkedin.com/in/mateus-fernandes-gon%C3%A7alves-12a428366/" target="_blank"><i class="fab fa-linkedin"></i></a>
                 <a href="https://github.com/MateusFego" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="https://www.instagram.com/https_fego/" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            
-            
         </div>
-        
+
         <div class="hero-image">
             <img src="./imagens/WhatsApp_Image_2025-11-14_at_19.13.51-removebg-preview.png" alt="Foto de Perfil">
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="tech-stack" class="tech-stack-section">
-        <h2>My Tech Stack</h2>
-        <div class="tech-icons-container">
-            
-            <div class="tech-item">
-                <i class="fab fa-linux"></i>
-                <p>Linux (SO)</p>
-            </div>
-
-            <div class="tech-item">
-                <i class="fab fa-windows"></i>
-                <p>Windows (SO)</p>
-            </div>
-            
-            <div class="tech-item">
-                <i class="fab fa-python"></i>
-                <p>Python</p>
-            </div>
-            
-            <div class="tech-item">
-                <i class="fab fa-java"></i>
-                <p>Java</p>
-            </div>
-            
-            <div class="tech-item">
-                <i class="fas fa-database"></i>
-                <p>MySQL / Banco de Dados</p>
-            </div>
-            
-            <div class="tech-item">
-                <i class="fab fa-html5"></i>
-                <p>HTML5</p>
-            </div>
-
-            <div class="tech-item">
-                <i class="fab fa-css3-alt"></i>
-                <p>CSS3</p>
-            </div>
-
-            <div class="tech-item">
-                <i class="fab fa-js"></i>
-                <p>JavaScript</p>
-            </div>
-
-            <div class="tech-item">
-                <i class="fab fa-wordpress"></i>
-                <p>WordPress</p>
-            </div>
-
-            <div class="tech-item">
-                <i class="fab fa-git-alt"></i>
-                <p>Git</p>
-            </div>
-
-            <div class="tech-item">
-                <i class="fab fa-github"></i>
-                <p>GitHub</p>
-            </div>
-
-            <div class="tech-item">
-                <i class="fab fa-docker"></i>
-                <p>Docker</p>
-            </div>
-
-            <div class="tech-item">
-                <i class="fas fa-laptop-code"></i>
-                <p>VS Code</p>
-            </div>
-            
-            <div class="tech-item">
-                <i class="fas fa-network-wired"></i>
-                <p>Redes</p>
-            </div>
-            
-            <div class="tech-item">
-                <i class="fas fa-terminal"></i>
-                <p>Lets Defend</p>
-            </div>
-
+<section id="about" class="about-section">
+    <div class="container">
+        <h2>Sobre Mim</h2>
+        <div class="about-text">
+            <p>Sou estudante de Análise e Desenvolvimento de Sistemas com foco em infraestrutura e cibersegurança, com interesse em atuar em ambientes de monitoramento, redes e segurança da informação.</p>
+            <p>Atualmente desenvolvo e mantenho um <strong>homelab ativo 24/7</strong>, onde implemento na prática ferramentas como SIEM (Wazuh), firewall com IDS/IPS (pfSense + Suricata), monitoramento (Zabbix, Grafana, Prometheus) e automações com n8n integradas ao Telegram.</p>
+            <p>Possuo certificações como <strong>Google Cybersecurity</strong> e <strong>Google IT Support</strong>, que reforçam minha base em redes, sistemas e segurança. Busco minha primeira oportunidade na área de TI para aprender, contribuir e evoluir.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2>Sobre Mim</h2>
-            <div class="about-content">
-                <blockquote>
-                    <p>Profissional em transição de carreira, altamente motivado e com grande <strong>interesse</strong> na área de <strong>Tecnologia da Informação</strong>.</p>
-                    <p>Sou estudante de <strong>Análise e Desenvolvimento de Sistemas (ADS)</strong> e dediquei meus estudos à certificação <strong>Google Cybersecurity</strong>, demonstrando meu foco e minha paixão pela segurança da informação. Minha experiência anterior me proporcionou <strong>disciplina, proatividade e capacidade de aprendizado acelerado</strong>.</p>
-                    <p>Busco minha primeira oportunidade em TI para aplicar minha paixão por tecnologia e resolução de problemas, sempre pronto para entregar o <strong>melhor desempenho</strong> e evoluir em qualquer função técnica.</p>
-                </blockquote>
+<section id="homelab" class="homelab-section">
+    <div class="container">
+        <h2>🔥 Homelab - Projeto Principal</h2>
+        <div class="project-item highlight">
+            <div class="homelab-main-content">
+                <div class="homelab-text">
+                    <h3>Ambiente de Infraestrutura e Segurança 24/7</h3>
+                    <p>Simulação de infraestrutura corporativa real com foco em monitoramento defensivo, alta disponibilidade e automação de incidentes.</p>
+                    
+                    <ul class="infra-list">
+                        <li><i class="fas fa-microchip"></i> <strong>Virtualização:</strong> Proxmox rodando 24/7</li>
+                        <li><i class="fas fa-shield-alt"></i> <strong>SIEM:</strong> Wazuh com agentes ativos</li>
+                        <li><i class="fas fa-network-wired"></i> <strong>Firewall:</strong> pfSense com Suricata (IDS/IPS)</li>
+                        <li><i class="fas fa-chart-line"></i> <strong>Monitoramento:</strong> Zabbix, Grafana e Prometheus</li>
+                        <li><i class="fas fa-cloud"></i> <strong>Cloud:</strong> Nextcloud em uso diário</li>
+                        <li><i class="fas fa-robot"></i> <strong>Automação:</strong> n8n com alertas Telegram</li>
+                        <li><i class="fas fa-box-open"></i> <strong>Containers:</strong> Docker + Portainer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="homelab-gallery">
+                <div class="gallery-item">
+                    <img src="imagens/wazuh.png" alt="Wazuh SIEM">
+                    <div class="overlay"><span>Wazuh SIEM - Monitoramento de Segurança</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="imagens/heimdall.png" alt="Heimdall Dashboard">
+                    <div class="overlay"><span>Heimdall - Central de Serviços</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="imagens/proxmox.png" alt="Proxmox VE">
+                    <div class="overlay"><span>Proxmox VE - Virtualização</span></div>
+                </div>
+            </div>
+            
+            <div class="homelab-footer">
+                <p class="status"><strong>Status:</strong> 🟢 Ambiente Ativo / Otimização constante.</p>
+                <div class="homelab-action">
+                    <a href="https://github.com/MateusFego" target="_blank" class="btn-link-small">
+                        <i class="fab fa-github"></i> Ver Documentação Completa no GitHub
+                    </a>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="projects" class="projects-section">
-        <h2>Meus Projetos Recentes</h2>
+<section id="projects" class="projects-section">
+    <div class="container">
+        <h2>Projetos Acadêmicos e Práticos</h2>
         <div class="project-grid">
 
-            <div class="project-item security">
-                <img src="imagens/WhatsApp Image 2025-11-14 at 19.26.44.jpeg" alt="Projeto de Finanças Pessoais">
-                <h3>Site local para controle de finanças pessoais</h3>
-                <p>Desenvolvido com auxílio de IA, com melhorias contínuas planejadas.</p>
-            </div>
+    <div class="project-card">
+        <img src="imagens/swappy-20251121-225211.png" alt="PyAutoGUI">
+        <h3>Automação Python</h3>
+        <p>Scripts com PyAutoGUI para automação de tarefas gráficas.</p>
+        <p>O script utiliza o Paint para desenhar uma casa automaticamente e salvar,
+            demonstrando automação de interface.</p>
+        <a href="https://github.com/MateusFego/automacao-aprendizado-python-pyautogui.git" target="_blank" class="btn-link-small">
+            🔗 Ver Repositório
+        </a>
+    </div>
 
-            <div class="project-item wordpress">
-                <img src="imagens/site2.png" alt="Site WordPress">
-                <h3>Site Aumigos - Projeto acadêmico (WordPress)</h3>
-                <p>Representação de um site para um canil municipal, com funcionalidades adicionais.</p>
-            </div>
-            
-            <div class="project-item wordpress">
-                <img src="imagens/site1.png" alt="Site WordPress">
-                <h3>Site ProndCeVai - Projeto acadêmico e pessoal (WordPress)</h3>
-                <p>Criação de site completo para cliente, demonstrando organização e atenção aos detalhes.</p>
-            </div>
+    <div class="project-card">
+        <img src="imagens/forms.png" alt="Forms">
+        <h3>Automação com PyAutoGUI para preenchimento de formulários</h3>
+        <p>Automação com Selenium para preenchimento de formulários.</p>
+        <p>Integração com dados para envio automatizado em massa.</p>
+        <a href="https://drive.google.com/file/d/1Xwvtuhwp_UUAF9jTVNmCOQIQjLsNPodL/view?usp=sharing">Vídeo demonstrativo</a>
+        <a href="https://github.com/MateusFego/Automocao-forms-pyautogui.git" target="_blank" class="btn-link-small">
+            🔗 Ver Repositório
+        </a>
+    </div>
 
-            <div class="project-item wordpress">
-                <img src="imagens/swappy-20251121-225211.png" alt="Automação em Python">
-                <h3>Atividade acadêmica de automação em Python</h3>
-                <p>Desenvolvimento de automação em Python utilizando PyAutoGUI para criação de desenho automático no Paint.</p>
-                <a href="https://drive.google.com/file/d/14Toy5_bpbp3EQvvZQ35pgbukgaEF8O__/view?usp=sharing">Vídeo demonstrativo</a><br><br>
-                <a href="https://github.com/MateusFego/automacao-aprendizado-python-pyautogui">Link do repositório</a>
-            </div>
+        <div class="project-card">
+        <img src="imagens/LogoKabumMercado.png" alt="Forms">
+        <h3>Automação e extração de dados com Selenium e Web Scraping</h3>
+        <p>Extração de produtos com filtros de preço e geração de arquivos .xlsx., no site Mercado Livre e Kabum</p>
+        <a href="https://drive.google.com/file/d/1nphgyeqHqjFM_6fqa3_zaX4z2w2C2bRE/view?usp=sharing">Vídeo demonstrativo Kabum</a>
+        <a href="https://drive.google.com/file/d/1IDTns0Ezg829wmjIjtoyKrRaPyBtcCCM/view?usp=sharing">Vídeo demonstrativo Mercado Livre</a>
+        <a href="https://github.com/MateusFego/Buscador-MercadoLivreAndKabum.git" target="_blank" class="btn-link-small">
+            🔗 Ver Repositório
+        </a>
+    </div>
 
-            <div class="project-item wordpress">
-                <img src="imagens/cristorei.png" alt="Abrigo Cristo Rei">
-                <h3>Project Owner - Abrigo Cristo Rei</h3>
-                <p>Projeto integrador acadêmico no qual atuei como Project Owner.</p>
-                <a href="https://abrigocristorei.com.br/">Acessar site</a><br><br>
-            </div>
+    <div class="project-card">
+        <img src="imagens/cristorei.png" alt="Forms">
+        <h3>Project Owner site - Abrigo Cristo Rei</h3>
+        <p>Site feito para o Abrigo Cristo Rei de Araguari - MG.</p>
+        <p>Onde atuei como Project Owner entre a equipe de desenvolvimento e a diretoria do abrigo</p>
+        <a href="https://abrigocristorei.com.br/" target="_blank" class="btn-link-small">
+            🔗 Ver Site
+        </a>
+    </div>
 
-            <div class="project-item wordpress">
-                <img src="imagens/forms.png" alt="Automação Forms">
-                <h3>Automação com PyAutoGUI para preenchimento de formulários</h3>
-                <p>Automação de envio de formulários utilizando dados de planilha.</p>
-                <a href="https://drive.google.com/file/d/1Xwvtuhwp_UUAF9jTVNmCOQIQjLsNPodL/view?usp=sharing">Vídeo demonstrativo</a><br><br>
-                <a href="https://github.com/MateusFego/Automocao-forms-pyautogui.git?authuser=1">Link do repositório</a>
-            </div>
+</div>
+    </div>
+</section>
 
-            <div class="project-item wordpress">
-                <img src="imagens/LogoKabumMercado.png" alt="Web Scraping">
-                <h3>Automação e extração de dados com Selenium e Web Scraping</h3>
-                <p>Extração de produtos com filtros de preço e geração de arquivos .xlsx.</p>
-                <a href="https://drive.google.com/file/d/1nphgyeqHqjFM_6fqa3_zaX4z2w2C2bRE/view?usp=sharing">Vídeo demonstrativo Kabum</a><br><br>
-                <a href="https://drive.google.com/file/d/1IDTns0Ezg829wmjIjtoyKrRaPyBtcCCM/view?usp=sharing">Vídeo demonstrativo Mercado Livre</a><br><br>
-                <a href="https://github.com/MateusFego/Buscador-MercadoLivreAndKabum.git">Link do repositório</a>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="skills" class="skills-section">
+<section id="skills" class="skills-section">
+    <div class="container">
         <h2>Habilidades</h2>
         <div class="skills-container">
-
             <div class="skills-group">
-                <h3>💻 Hard Skills (Técnicas)</h3>
+                <h3>💻 Técnicas</h3>
                 <ul>
-                    <li><strong>Cibersegurança:</strong> Conceitos de SIEM/SOAR, IDS/IPS (teoria), análise de logs.</li>
-                    <li><strong>Desenvolvimento:</strong> Lógica de programação, Python (em estudo), Java (básico), MySQL.</li>
-                    <li><strong>Redes:</strong> Arquitetura de redes, modelo OSI/TCP-IP, protocolos básicos.</li>
-                    <li><strong>Ferramentas:</strong> Git/GitHub (básico), Microsoft Excel, AutoCAD (operacional).</li>
+                    <li>SIEM • Wazuh • Logs</li>
+                    <li>Redes • TCP/IP • OSI</li>
+                    <li>Firewall • pfSense • Suricata</li>
+                    <li>Virtualização • Proxmox</li>
+                    <li>Monitoramento • Zabbix • Grafana</li>
+                    <li>Containers • Docker</li>
+                    <li>Automação • n8n</li>
+                    <li>Linux • Windows</li>
+                    <li>Python • Scripts</li>
                 </ul>
             </div>
-
             <div class="skills-group">
-                <h3>✨ Soft Skills (Comportamentais)</h3>
+                <h3>✨ Comportamentais</h3>
                 <ul>
-                    <li>Proatividade e autonomia</li>
-                    <li>Atenção aos detalhes e precisão</li>
-                    <li>Aprendizado rápido</li>
+                    <li>Proatividade</li>
+                    <li>Aprendizado contínuo</li>
                     <li>Resolução de problemas</li>
-                    <li>Disciplina e organização</li>
+                    <li>Disciplina e consistência</li>
                 </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section id="contact" class="contact-section">
-        <h2>Entre em Contato</h2>
-        <p>Tenho interesse em oportunidades de estágio ou nível júnior na área de TI/Cibersegurança. Vamos nos conectar!</p>
-        
+<section id="certifications" class="cert-section">
+    <div class="container">
+        <h2>Certificações</h2>
+        <ul class="cert-list">
+            <li><i class="fab fa-google"></i> Google Cybersecurity Professional</li>
+            <li><i class="fab fa-google"></i> Google IT Support Professional</li>
+            <li><i class="fas fa-certificate"></i> Arquitetura de Redes (Udemy)</li>
+            <li><i class="fas fa-shield-virus"></i> Cyber Security (Udemy)</li>
+            <li><i class="fas fa-shield-virus"></i> Fundamentos ISO 27001(Udemy)</li>
+            <li><i class="fas fa-shield-virus"></i> Algoritmos e Lógica de Programação(Udemy)</li>
+            <li><i class="fas fa-shield-virus"></i> Python 3 básico ao avançado(Udemy - em andamento)</li>
+            <li><i class="fas fa-shield-virus"></i> Inglês: básico ao avançado(Udemy - em andamento)</li>
+        </ul>
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+    <div class="container contact-container"> <h2>Contato</h2>
+
+        <p class="opportunity-badge">Aberto a oportunidades em TI geral, infraestrutura, redes e segurança</p>
+
         <div class="contact-info">
-            <p><i class="fas fa-envelope"></i> Email: mateusfego@gmail.com</p>
-            <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/mateus-fernandes-gon%C3%A7alves-12a428366/" target="_blank">/mateus-fernandes-gonçalves</a></p>
-            <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/MateusFego" target="_blank">/MateusFego</a></p>
-            <p><i class="fas fa-phone"></i> Telefone: (34) 98837-5189</p>
+            <a href="mailto:mateusfego@gmail.com"><i class="fas fa-envelope"></i> mateusfego@gmail.com</a>
+            <a href="https://www.linkedin.com/in/mateus-fernandes-gon%C3%A7alves-12a428366/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/MateusFego" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="tel:34988375189"><i class="fas fa-phone"></i> (34) 98837-5189</a>
         </div>
-    </section>
-    
-    <script src="script.js"></script>
+    </div>
+</section>
+<script src="script.js"></script>
 </body>
 </html>
